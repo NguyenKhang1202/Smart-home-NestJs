@@ -14,6 +14,7 @@ export class SensorService {
     private readonly sensorRepository: Repository<Sensor>,
   ) {}
 
+  // get one data (newly)
   async getDataSensorDb(): Promise<Sensor | undefined> {
     try {
       const sensor: Sensor[] = await this.sensorRepository.find({
@@ -26,6 +27,8 @@ export class SensorService {
       logger.error('getDataSensorDb: ' + error);
     }
   }
+
+  // get all data
   async getAllSensorDataDb() {
     try {
       const sensors: Sensor[] = await this.sensorRepository.find({

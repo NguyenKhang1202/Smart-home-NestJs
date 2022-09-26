@@ -13,10 +13,7 @@ const logger: Logger = new Logger('Main');
 async function bootstrap() {
   // setup Cors
   const appOptions = {
-    cors: {
-      origin: 'http://localhost:3000',
-      credentials: true,
-    },
+    cors: true,
   };
   const app = await NestFactory.create(AppModule, appOptions);
   const configService: ConfigService = app.get(ConfigService);
@@ -40,7 +37,7 @@ async function bootstrap() {
 
   setupFirebase(admin);
 
-  await app.listen(configService.get<string>('API_PORT'));
-  logger.log(`App listening on port ${configService.get<string>('API_PORT')}`);
+  await app.listen(process.env.PORT || 4000);
+  logger.log(`App listening on port ${configService.get<string>('PORT')}`);
 }
 bootstrap();

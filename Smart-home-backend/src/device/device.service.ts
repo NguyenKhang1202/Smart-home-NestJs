@@ -5,7 +5,7 @@ import { CreateDeviceDto } from './dto/create-device.dto';
 import { UpdateDeviceDto } from './dto/update-device.dto';
 import { Device } from './entities/device.entity';
 const logger: Logger = new Logger('device.services.ts');
-import { topicMqtt } from 'src/config/configuration';
+import { topicMqtt } from 'src/config/constants';
 import { MqttService } from 'nest-mqtt';
 @Injectable()
 export class DeviceService {
@@ -63,6 +63,8 @@ export class DeviceService {
       if (deviceForEdit) {
         deviceForEdit.status = updateDeviceDto?.status;
         const rs: Device = await this.deviceRepository.save(deviceForEdit);
+
+        // publish to MQTT broker
         const message: MqttMessageControlDevice = {
           deviceId: id,
           status: updateDeviceDto.status,

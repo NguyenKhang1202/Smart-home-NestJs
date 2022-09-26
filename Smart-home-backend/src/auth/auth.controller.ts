@@ -5,8 +5,6 @@ import {
   UseGuards,
   Request,
   Req,
-  UseInterceptors,
-  ClassSerializerInterceptor,
   Res,
   HttpStatus,
   HttpException,
@@ -17,12 +15,11 @@ import { LocalAuthGuard } from 'src/security/guard/local-auth.guard';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ChangePasswordDto, LoginResponseDto } from './dto/auth.dto';
-import * as bcrypt from 'bcrypt';
-// import apiResponse from 'src/utils/api.response';
 import { Response } from 'express';
 import { APIStatus } from 'src/config/constants';
 import { UsersService } from 'src/users/users.service';
 import { User } from 'src/users/entities/user.entity';
+import * as bcrypt from 'bcrypt';
 import hashPassword from 'src/utils/hash.password';
 @ApiTags('auth')
 @Controller('auth')

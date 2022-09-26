@@ -22,7 +22,7 @@ import { User } from './entities/user.entity';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/security/decorators/auth.decorator';
 import hashPassword from 'src/utils/hash.password';
-// const logger: Logger = new Logger('users.controller.ts');
+const logger: Logger = new Logger('users.controller.ts');
 
 @ApiTags('users')
 @Controller('/api/v1/users')

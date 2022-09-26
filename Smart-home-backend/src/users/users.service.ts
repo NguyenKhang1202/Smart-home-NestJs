@@ -63,12 +63,14 @@ export class UsersService {
     }
   }
 
+  // change password
   async changePasswordDb(user: User, newPassword: string) {
     user.password = newPassword;
     const rs: User = await this.userRepository.save(user);
     return rs;
   }
 
+  // delete user
   async deleteUserDb(id: string): Promise<DeleteResult> {
     try {
       const result: DeleteResult = await this.userRepository.delete(id);

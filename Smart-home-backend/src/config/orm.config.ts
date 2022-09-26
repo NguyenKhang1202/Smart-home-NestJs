@@ -2,7 +2,7 @@ import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOpti
 
 const config: MysqlConnectionOptions = {
   type: 'mysql',
-  host: 'localhost',
+  host: process.env.HOST,
   port: 3306,
   username: 'root',
   password: '123456',

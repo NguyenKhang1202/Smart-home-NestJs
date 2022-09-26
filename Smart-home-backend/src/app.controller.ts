@@ -1,34 +1,20 @@
-import {
-  Controller,
-  Get,
-  Param,
-  Post,
-  Query,
-  Req,
-  UseGuards,
-  Request,
-} from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { AppService } from './app.service';
-import configuration from './config/configuration';
 import { ConfigService } from '@nestjs/config';
-import { JwtAuthGuard } from './security/guard/jwt-auth.guard';
-import { Roles } from './security/decorators/roles.decorators';
-import { Role } from './users/entities/role.enum';
-import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Auth } from './security/decorators/auth.decorator';
-@ApiTags('App')
+import { Role } from './users/entities/role.enum';
+import {
+  ApiExcludeEndpoint,
+  ApiHeader,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 @Controller('')
 export class AppController {
-  constructor(
-    private readonly appService: AppService,
-    private configService: ConfigService,
-  ) {}
+  constructor(private readonly appService: AppService) {}
 
-  @ApiResponse({
-    status: 200,
-    description: 'Test function get success!',
-  })
-  @ApiOperation({ summary: 'test' })
+  @ApiExcludeEndpoint()
   @Get('/app/mqtt')
   // @Auth(Role.ADMIN)
   getHello(@Req() req: Request | any): string {

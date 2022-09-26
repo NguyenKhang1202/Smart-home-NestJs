@@ -32,6 +32,7 @@ export class RoomService {
     }
   }
 
+  // insert new room
   async createRoomDb(
     userId: string,
     createRoomDto: CreateRoomDto,
@@ -47,6 +48,7 @@ export class RoomService {
     }
   }
 
+  // edit room
   async updateRoomDb(
     roomForEdit: Room,
     updateRoomDto: UpdateRoomDto,
@@ -60,6 +62,7 @@ export class RoomService {
     }
   }
 
+  // delete room
   async deleteRoomDb(id: string): Promise<DeleteResult | undefined> {
     try {
       const result: DeleteResult = await this.roomRepository.delete(id);
